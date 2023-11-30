@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cbt/core/extensions/build_context_ext.dart';
+import 'package:flutter_cbt_dhani/core/extensions/build_context_ext.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/components/search_input.dart';
@@ -47,7 +47,7 @@ class HeaderHome extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Saiful Bahri',
+                      'Rahmat Ramadhani',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 12,

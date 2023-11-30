@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cbt/core/constants/colors.dart';
-
+import 'core/constants/colors.dart';
 import 'presentation/onboarding/pages/onboarding_page.dart';
 
 void main() {

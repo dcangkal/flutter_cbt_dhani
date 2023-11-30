@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_cbt/core/components/buttons.dart';
 
 import '../../../core/assets/assets.gen.dart';
+import '../../../core/components/buttons.dart';
 import '../../../core/constants/colors.dart';
 
 class RegisterSuccessDialog extends StatelessWidget {

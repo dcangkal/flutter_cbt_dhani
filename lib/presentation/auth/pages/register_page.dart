@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cbt/core/extensions/build_context_ext.dart';
-import 'package:flutter_cbt/presentation/auth/pages/login_page.dart';
+import 'package:flutter_cbt_dhani/core/extensions/build_context_ext.dart';
 
 import '../../../core/components/buttons.dart';
 import '../../../core/components/custom_text_field.dart';
 import '../../../core/constants/colors.dart';
 import '../widgets/register_success_dialog.dart';
+import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

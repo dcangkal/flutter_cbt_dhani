@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cbt/presentation/home/pages/home_page.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/constants/colors.dart';
 import '../widgets/nav_menu.dart';
+import 'home_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
