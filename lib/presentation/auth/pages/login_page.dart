@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cbt_dhani/core/extensions/build_context_ext.dart';
+import 'package:flutter_cbt_dhani/data/datasources/local/auth_local_datasource.dart';
+import 'package:flutter_cbt_dhani/data/models/requests/login_request_model.dart';
+import 'package:flutter_cbt_dhani/presentation/auth/bloc/login/login_bloc.dart';
+import 'package:flutter_cbt_dhani/presentation/auth/widgets/login_success_dialog.dart';
 
 import '../../../core/components/buttons.dart';
 import '../../../core/components/custom_text_field.dart';
@@ -23,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: const Text('Log in'),
       ),
@@ -51,11 +57,57 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           const SizedBox(height: 42.0),
-          Button.filled(
-            onPressed: () {
-              context.pushReplacement(const DashboardPage());
+          BlocConsumer<LoginBloc, LoginState>(
+            listener: (context, state) {
+              state.maybeWhen(
+                  orElse: () {},
+                  success: (model) {
+                    AuthLocalDatasource().saveAuth(model);
+                    Future.delayed(
+                      const Duration(seconds: 2),
+                      () => context.pushReplacement(
+                        const DashboardPage(),
+                      ),
+                    );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const LoginSuccessDialog();
+                      },
+                    );
+                  },
+                  error: (message) {
+                    return ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('login error'),
+                      ),
+                    );
+                  });
             },
-            label: 'LOG IN',
+            builder: (context, state) {
+              return state.maybeWhen(
+                orElse: () {
+                  return Button.filled(
+                    onPressed: () {
+                      final model = LoginRequestModel(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+
+                      context.read<LoginBloc>().add(
+                            LoginEvent.login(model),
+                          );
+                    },
+                    label: 'LOG IN',
+                  );
+                },
+                loading: () {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              );
+            },
           ),
           const SizedBox(height: 24.0),
           GestureDetector(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cbt_dhani/core/extensions/build_context_ext.dart';
+import 'package:flutter_cbt_dhani/data/datasources/local/onboarding_local_datasource.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/components/buttons.dart';
@@ -88,6 +89,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                       setState(() {});
                     } else {
                       navigate();
+                      OnboardingLocalDatasource().setOnboardingStatus();
                     }
                   },
                   label: 'Continue',

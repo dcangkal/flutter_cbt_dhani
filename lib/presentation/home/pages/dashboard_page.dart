@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cbt_dhani/presentation/home/pages/profile_page.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/constants/colors.dart';
@@ -21,9 +22,7 @@ class _DashboardPageState extends State<DashboardPage> {
     const Center(
       child: Text('Notif'),
     ),
-    const Center(
-      child: Text('Profile'),
-    ),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {

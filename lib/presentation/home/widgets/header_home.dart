@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cbt_dhani/core/extensions/build_context_ext.dart';
+import 'package:flutter_cbt_dhani/data/datasources/local/auth_local_datasource.dart';
 
 import '../../../core/assets/assets.gen.dart';
 import '../../../core/components/search_input.dart';
@@ -35,10 +36,10 @@ class HeaderHome extends StatelessWidget {
               const SizedBox(width: 16.0),
               SizedBox(
                 width: context.deviceWidth - 208.0,
-                child: const Column(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Halo,',
                       style: TextStyle(
                         color: Colors.white,
@@ -46,15 +47,23 @@ class HeaderHome extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
-                      'Rahmat Ramadhani',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                    FutureBuilder(
+                        future: AuthLocalDatasource().getAuth(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              snapshot.data!.user.name,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
+                        }),
                   ],
                 ),
               ),
