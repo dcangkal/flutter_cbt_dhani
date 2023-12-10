@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_cbt_dhani/data/datasources/auth_remote_datasource.dart';
+import 'package:flutter_cbt_dhani/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:flutter_cbt_dhani/data/models/requests/register_request_model.dart';
 import 'package:flutter_cbt_dhani/data/models/responses/auth_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

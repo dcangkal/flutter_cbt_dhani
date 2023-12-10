@@ -55,7 +55,7 @@ class HeaderHome extends StatelessWidget {
                               snapshot.data!.user.name,
                               style: const TextStyle(
                                 color: Colors.white,
-                                fontSize: 12,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w400,
                               ),
                               overflow: TextOverflow.ellipsis,
